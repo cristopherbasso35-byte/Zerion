@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zerion - Fortnite Organization</title>
+    <!-- Font e Icone -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;800;900&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Flag Icons CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/lipis/flag-icons@6.6.6/css/flag-icons.min.css"/>
+    
+    <style>
+        :root {
+            --primary-yellow: #FFDF00;
+            --dark-bg: #070908;
+            --darker-bg: #030504;
+            --border-yellow: rgba(255, 223, 0, 0.3);
+            --text-light: #ffffff;
+            --text-gray: #a0a0a0;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        ::selection { background-color: var(--primary-yellow); color: var(--darker-bg); }
+        ::-moz-selection { background-color: var(--primary-yellow); color: var(--darker-bg); }
+
+        ::-webkit-scrollbar { width: 10px; height: 8px; }
+        ::-webkit-scrollbar-track { background: var(--darker-bg); }
+        ::-webkit-scrollbar-thumb { background: var(--primary-yellow); border-radius: 5px; }
+        ::-webkit-scrollbar-thumb:hover { background: #e6c800; }
+
+        body {
+            background-color: var(--dark-bg);
+            color: var(--text-light);
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
+            padding-top: 74px; 
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 74px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 5%;
+            background: rgba(3, 5, 4, 0.95);
+            border-bottom: 1px solid var(--border-yellow);
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo-text h1 { font-family: 'Orbitron', sans-serif; font-size: 1.1rem; font-weight: 800; }
+        .logo-text span { font-size: 0.7rem; color: var(--primary-yellow); letter-spacing: 2px; text-transform: uppercase; }
+
+        nav ul { display: flex; list-style: none; gap: 20px; align-items: center; }
+        
+        nav ul li a { 
+            text-decoration: none; 
+            color: var(--text-gray); 
+            font-size: 0.9rem; 
+            font-weight: 600; 
+            padding: 8px 18px; 
+            border-radius: 4px; 
+            transition: 0.3s; 
+            font-family: 'Orbitron', sans-serif;
+        }
+        nav ul li a.active, nav ul li a:hover { 
+            background-color: var(--primary-yellow); 
+            color: var(--darker-bg); 
+            font-weight: 700; 
+        }
+
+        .shop-btn { 
+            background-color: var(--primary-yellow); 
+            color: var(--darker-bg); 
+            padding: 10px 24px; 
+            border-radius: 4px; 
+            font-weight: 800; 
+            text-transform: uppercase; 
+            text-decoration: none; 
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.9rem;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.3s;
+        }
+        .shop-btn:hover {
+            opacity: 0.9;
+            transform: translateY(-2px);
+        }
+
+        .hero { position: relative; min-height: 80vh; width: 100%; padding: 60px 8% 0 8%; display: flex; flex-direction: column; justify-content: center; overflow: hidden; }
+        .video-background { position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2; }
+        .video-overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(7, 9, 8, 0.4); z-index: -1; }
+        .hero-title { font-family: 'Orbitron', sans-serif; font-size: clamp(4.5rem, 10vw, 10rem); font-weight: 900; color: #fff; line-height: 0.9; }
+        .hero-subtitle-line { font-family: 'Orbitron', sans-serif; font-size: 1.15rem; color: var(--primary-yellow); margin-top: 10px; }
+
+        .banner {
+            background-color: var(--primary-yellow);
+            color: var(--darker-bg);
+            padding: 12px 3%;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: 'Orbitron', sans-serif;
+            font-weight: 800;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            white-space: nowrap;
+            overflow: hidden;
+            gap: 15px;
+        }
+
+        .machine-section { padding: 100px 8% 60px 8%; text-align: center; }
+        
+        .machine-tag { 
+            font-family: 'Orbitron', sans-serif; 
+            font-size: 0.85rem; 
+            color: var(--text-light); 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            margin-bottom: 15px; 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 8px; 
+        }
+
+        @keyframes pulse-yellow {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 223, 0, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 8px rgba(255, 223, 0, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(255, 223, 0, 0); }
+        }
+
+        .machine-tag i { 
+            color: var(--primary-yellow); 
+            border-radius: 50%;
+            animation: pulse-yellow 2s infinite;
+        }
+        
+        .machine-title { font-family: 'Orbitron', sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 900; color: #fff; line-height: 1.2; margin-bottom: 20px; }
+        .machine-title span { color: var(--primary-yellow); display: block; }
+
+        .machine-desc { color: var(--text-gray); font-size: 1.05rem; max-width: 700px; margin: 0 auto 60px auto; line-height: 1.6; }
+
+        .machine-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; text-align: left; }
+        .machine-card { background: #111; border: 1px solid #222; border-radius: 6px; padding: 35px 30px; transition: 0.3s; }
+        .machine-card:hover { border-color: var(--primary-yellow); transform: translateY(-5px); }
+        .machine-icon { width: 45px; height: 45px; border-radius: 6px; background: rgba(255, 223, 0, 0.1); color: var(--primary-yellow); display: flex; align-items: center; justify-content: center; font-size: 1.2rem; margin-bottom: 25px; border: 1px solid var(--border-yellow); }
+        .machine-card h3 { font-family: 'Orbitron', sans-serif; font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 12px; }
+        .machine-card p { color: var(--text-gray); font-size: 0.92rem; line-height: 1.5; }
+
+        .roster-container { padding: 60px 8% 100px 8%; text-align: center; }
+        .section-main-title { font-family: 'Orbitron', sans-serif; font-size: 2.2rem; color: #fff; margin-bottom: 50px; text-transform: uppercase; }
+        .category-title { font-family: 'Orbitron', sans-serif; font-size: 1.8rem; margin: 50px 0 25px; color: var(--primary-yellow); border-bottom: 2px solid var(--border-yellow); display: inline-block; padding-bottom: 5px; }
+        
+        .grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 35px; margin-top: 20px; }
+        
+        .player-card { background: #111; border: 1px solid #333; padding: 35px 15px; text-align: center; transition: 0.3s; width: 280px; min-height: 320px; display: flex; flex-direction: column; justify-content: center; flex-shrink: 0; border-radius: 4px; }
+        .player-card:hover { border-color: var(--primary-yellow); transform: translateY(-5px); }
+        
+        .player-img { width: 120px; height: 120px; background-color: #222; object-fit: cover; margin: 0 auto 20px auto; display: block; border-radius: 12px; border: 2px solid #333; }
+        .player-name { font-family: 'Orbitron', sans-serif; font-size: 1.3rem; font-weight: 800; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        .player-role { color: #aaa; font-size: 0.9rem; text-transform: uppercase; margin-top: 8px; }
+        .flag { font-size: 1.2rem; }
+
+        /* --- SEZIONE TWEAK CON SCRITTE A DESTRA E A SINISTRA --- */
+        .tweak-section {
+            padding: 100px 8%;
+            background: var(--darker-bg);
+            border-top: 1px solid var(--border-yellow);
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .tweak-board-wrapper {
+            position: relative;
+            width: 100%;
+            max-width: 900px;
+            min-height: 360px;
+            border: none;
+            border-radius: 10px;
+            background: #000;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 40px 60px;
+            box-sizing: border-box;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            overflow: hidden;
+        }
+
+        .tweak-board-wrapper img.tweak-png {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 1;
+            filter: brightness(0.6);
+        }
+
+        /* Contenuto di Sinistra */
+        .tweak-left-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 15px;
+            text-align: left;
+            max-width: 45%;
+        }
+
+        .tweak-left-content h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 2.2rem;
+            color: #fff;
+            font-weight: 800;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.8);
+            line-height: 1.1;
+        }
+
+        .tweak-left-content h3 span {
+            color: var(--primary-yellow);
+            display: block;
+        }
+
+        .tweak-left-content p {
+            color: var(--text-gray);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* Contenuto di Destra (Pulsante e Azione) */
+        .tweak-right-content {
+            position: relative;
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .tweak-open-btn {
+            padding: 16px 36px;
+            background: var(--primary-yellow);
+            color: var(--darker-bg);
+            border: none;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 223, 0, 0.3);
+        }
+
+        .tweak-open-btn:hover {
+            background: #e6c800;
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(255, 223, 0, 0.4);
+        }
+
+        /* --- MODALE IN SOVRAIMPRESSIONE (POPUP) --- */
+        .modal-overlay {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-box {
+            background: linear-gradient(135deg, #0d110f 0%, #131815 100%);
+            border: 1px solid var(--border-yellow);
+            padding: 35px 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 420px;
+            position: relative;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.8);
+        }
+
+        .modal-box h2 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 900;
+            color: #fff;
+            text-align: center;
+            margin-bottom: 25px;
+        }
+
+        .modal-box h2 span {
+            color: var(--primary-yellow);
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 18px;
+        }
+
+        .form-group label {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .form-group label i {
+            color: var(--primary-yellow);
+        }
+
+        .form-group input, 
+        .form-group select {
+            width: 100%;
+            padding: 12px 16px;
+            border-radius: 6px;
+            border: 1px solid #222;
+            background: #070908;
+            color: #fff;
+            font-size: 0.9rem;
+            font-family: 'Inter', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus, 
+        .form-group select:focus {
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 10px rgba(255, 223, 0, 0.15);
+            background: #0b0f0d;
+        }
+
+        .modal-submit-btn {
+            width: 100%;
+            padding: 15px;
+            background: var(--primary-yellow);
+            color: var(--darker-bg);
+            border: none;
+            border-radius: 6px;
+            font-weight: 800;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+            font-family: 'Orbitron', sans-serif;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 223, 0, 0.2);
+        }
+
+        .modal-submit-btn:hover {
+            background: #e6c800;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 223, 0, 0.3);
+        }
+
+        .modal-close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .modal-close-btn:hover { color: #fff; }
+
+        /* Widget fluttuanti in basso a destra (Chat + Scroll To Top) */
+        .floating-widgets {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            z-index: 999;
+            align-items: flex-end;
+        }
+
+        .floating-chat { 
+            background: var(--primary-yellow); 
+            color: var(--darker-bg); 
+            width: 60px; 
+            height: 60px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center; 
+            font-size: 1.5rem; 
+            cursor: pointer; 
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            border: none;
+        }
+        .floating-chat:hover { transform: scale(1.05); }
+
+        .scroll-top-btn {
+            background: #111;
+            color: var(--primary-yellow);
+            border: 1px solid var(--border-yellow);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+        .scroll-top-btn:hover {
+            background: var(--primary-yellow);
+            color: var(--darker-bg);
+            transform: translateY(-3px);
+        }
+
+        /* --- FINESTRA CHAT POPUP --- */
+        .chat-popup {
+            position: absolute;
+            bottom: 75px;
+            right: 0;
+            width: 380px;
+            max-width: calc(100vw - 40px);
+            height: 520px;
+            background: #0d1210;
+            border: 1px solid var(--border-yellow);
+            border-radius: 14px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            transform: scale(0);
+            transform-origin: bottom right;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            z-index: 1001;
+        }
+
+        .chat-popup.active {
+            transform: scale(1);
+        }
+
+        .chat-header {
+            padding: 16px 20px;
+            background: #121815;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .chat-header-info h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1rem;
+            color: #fff;
+            font-weight: 800;
+        }
+
+        .chat-header-info span {
+            font-size: 0.72rem;
+            color: var(--text-gray);
+        }
+
+        .chat-close-btn {
+            background: none;
+            border: none;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .chat-close-btn:hover { color: #fff; }
+
+        .chat-body {
+            flex: 1;
+            padding: 16px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .chat-msg {
+            max-width: 85%;
+            padding: 12px 16px;
+            border-radius: 10px;
+            font-size: 0.88rem;
+            line-height: 1.4;
+        }
+
+        .chat-msg.bot {
+            background: rgba(255, 223, 0, 0.08);
+            border: 1px solid rgba(255, 223, 0, 0.2);
+            color: #fff;
+            align-self: flex-start;
+            border-top-left-radius: 2px;
+        }
+
+        .chat-msg.bot a {
+            color: var(--primary-yellow);
+            text-decoration: underline;
+        }
+
+        .chat-msg.user {
+            background: var(--primary-yellow);
+            color: var(--darker-bg);
+            align-self: flex-end;
+            border-top-right-radius: 2px;
+            font-weight: 500;
+        }
+
+        .chat-quick-replies {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 6px;
+            margin-top: 8px;
+        }
+
+        .quick-reply-btn {
+            background: #151d19;
+            border: 1px solid rgba(255, 223, 0, 0.2);
+            color: var(--text-light);
+            padding: 6px 12px;
+            border-radius: 16px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+        .quick-reply-btn:hover {
+            background: var(--primary-yellow);
+            color: var(--darker-bg);
+            border-color: var(--primary-yellow);
+        }
+
+        .chat-footer {
+            padding: 12px 16px;
+            background: #121815;
+            border-top: 1px solid rgba(255,255,255,0.05);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .chat-input {
+            flex: 1;
+            background: #080b09;
+            border: 1px solid rgba(255, 223, 0, 0.3);
+            border-radius: 20px;
+            padding: 10px 16px;
+            color: #fff;
+            font-size: 0.85rem;
+            outline: none;
+            transition: 0.2s;
+        }
+        .chat-input:focus {
+            border-color: var(--primary-yellow);
+        }
+
+        .chat-send-btn {
+            background: var(--primary-yellow);
+            color: var(--darker-bg);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.2s;
+            flex-shrink: 0;
+        }
+        .chat-send-btn:hover { transform: scale(1.05); }
+        
+        /* Timeline Verticale Stile Moderno */
+        .story-section { padding: 90px 8%; background: rgba(3, 5, 4, 0.6); border-top: 1px solid var(--border-yellow); }
+        .story-grid { display: grid; grid-template-columns: 1.1fr 1fr; gap: 60px; align-items: start; }
+        .story-text p { color: var(--text-gray); font-size: 1.02rem; line-height: 1.7; font-family: 'Inter', sans-serif; }
+        
+        .timeline-wrapper {
+            position: relative;
+            padding-left: 35px;
+            margin-top: 10px;
+        }
+        
+        .timeline-wrapper::before {
+            content: '';
+            position: absolute;
+            left: 11px;
+            top: 10px;
+            bottom: 10px;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--primary-yellow), rgba(255, 223, 0, 0.1));
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+            background: rgba(17, 17, 17, 0.7);
+            border: 1px solid #1f2421;
+            padding: 24px 28px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+        }
+
+        .timeline-item:hover {
+            border-color: var(--primary-yellow);
+            transform: translateX(6px);
+            background: rgba(22, 22, 22, 0.9);
+            box-shadow: 0 4px 20px rgba(255, 223, 0, 0.05);
+        }
+
+        .timeline-icon-box {
+            position: absolute;
+            left: -47px;
+            top: 24px;
+            width: 26px;
+            height: 26px;
+            background: var(--darker-bg);
+            border: 2px solid var(--primary-yellow);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-yellow);
+            font-size: 0.75rem;
+            box-shadow: 0 0 10px rgba(255, 223, 0, 0.3);
+        }
+
+        .timeline-year {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            color: var(--primary-yellow);
+            font-weight: 700;
+            letter-spacing: 1px;
+            margin-bottom: 4px;
+            text-transform: uppercase;
+        }
+
+        .timeline-content h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 6px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .timeline-content p {
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* --- SEZIONE NEWS --- */
+        .news-section {
+            padding: 90px 4%;
+            background: var(--dark-bg);
+            border-top: 1px solid var(--border-yellow);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-layout-wrapper {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            max-width: 1500px;
+            margin: 0 auto;
+        }
+
+        .side-banner-img {
+            width: 180px;
+            height: 500px;
+            object-fit: cover;
+            border-radius: 8px;
+            border: 1px solid var(--border-yellow);
+            opacity: 0.85;
+            transition: 0.3s ease;
+            box-shadow: 0 0 20px rgba(0,0,0,0.8);
+            flex-shrink: 0;
+        }
+
+        .side-banner-img:hover {
+            opacity: 1;
+            border-color: var(--primary-yellow);
+            box-shadow: 0 0 25px rgba(255, 223, 0, 0.2);
+        }
+
+        .news-main-content {
+            flex-grow: 1;
+            text-align: center;
+        }
+
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+            text-align: left;
+        }
+
+        .news-card {
+            background: linear-gradient(135deg, #0d110f 0%, #131815 100%);
+            border: 1px solid #222;
+            border-radius: 6px;
+            padding: 25px;
+            transition: all 0.3s ease;
+            position: relative;
+        }
+
+        .news-card:hover {
+            border-color: var(--primary-yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(255, 223, 0, 0.15);
+        }
+
+        .news-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .news-badge {
+            background: rgba(255, 223, 0, 0.08);
+            color: var(--primary-yellow);
+            border: 1px solid rgba(255, 223, 0, 0.2);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .news-date {
+            font-size: 0.75rem;
+            color: var(--text-gray);
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .news-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            color: #fff;
+            margin-bottom: 12px;
+            font-weight: 800;
+        }
+
+        .news-card p {
+            color: var(--text-gray);
+            font-size: 0.88rem;
+            line-height: 1.5;
+        }
+
+        /* --- SEZIONE TORNEI --- */
+        .tournaments-section {
+            padding: 90px 8%;
+            background: var(--darker-bg);
+            border-top: 1px solid var(--border-yellow);
+            position: relative;
+        }
+
+        .tournaments-header-flex {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 30px;
+        }
+
+        .tournaments-nav-arrows {
+            display: flex;
+            gap: 12px;
+        }
+
+        .t-arrow-btn {
+            background: #111;
+            border: 1px solid var(--border-yellow);
+            color: var(--primary-yellow);
+            width: 45px;
+            height: 45px;
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: 0.3s;
+            font-size: 1.1rem;
+        }
+
+        .t-arrow-btn:hover {
+            background: var(--primary-yellow);
+            color: var(--darker-bg);
+        }
+
+        .tournaments-carousel-container {
+            position: relative;
+            width: 100%;
+        }
+
+        .tournaments-grid {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+            padding: 15px 20px;
+            -webkit-mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+            mask-image: linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%);
+        }
+
+        .tournaments-grid::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tournament-card {
+            background: linear-gradient(135deg, #0d110f 0%, #131815 100%);
+            border: 1px solid #222;
+            border-left: 4px solid var(--primary-yellow);
+            border-radius: 6px;
+            padding: 22px;
+            transition: all 0.3s ease;
+            position: relative;
+            min-width: 320px;
+            flex: 0 0 320px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        }
+
+        .tournament-card:hover {
+            border-color: var(--primary-yellow);
+            border-left-color: var(--primary-yellow);
+            transform: translateY(-5px);
+            box-shadow: 0 6px 25px rgba(255, 223, 0, 0.15);
+        }
+
+        .tournament-header-row {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+
+        .tournament-badge {
+            background: rgba(255, 223, 0, 0.08);
+            color: var(--primary-yellow);
+            border: 1px solid rgba(255, 223, 0, 0.2);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.65rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 3px;
+            text-transform: uppercase;
+        }
+
+        .tournament-status {
+            font-size: 0.7rem;
+            font-family: 'Orbitron', sans-serif;
+            color: var(--primary-yellow);
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .tournament-status::before {
+            content: '';
+            width: 6px;
+            height: 6px;
+            background-color: var(--primary-yellow);
+            border-radius: 50%;
+            display: inline-block;
+            box-shadow: 0 0 8px var(--primary-yellow);
+        }
+
+        .tournament-card h3 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.15rem;
+            color: #fff;
+            margin-bottom: 15px;
+            font-weight: 800;
+            letter-spacing: 0.5px;
+        }
+
+        .tournament-info {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            margin-bottom: 20px;
+            color: var(--text-gray);
+            font-size: 0.88rem;
+            background: rgba(0,0,0,0.3);
+            padding: 12px;
+            border-radius: 4px;
+            border: 1px solid rgba(255,255,255,0.03);
+        }
+
+        .tournament-info div {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .tournament-info i {
+            color: var(--primary-yellow);
+            width: 16px;
+            text-align: center;
+        }
+
+        .tournament-link {
+            display: block;
+            text-align: center;
+            background: rgba(255, 223, 0, 0.08);
+            color: var(--primary-yellow);
+            border: 1px solid var(--border-yellow);
+            padding: 10px;
+            border-radius: 4px;
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .tournament-link:hover {
+            background: var(--primary-yellow);
+            color: var(--darker-bg);
+            border-color: var(--primary-yellow);
+        }
+
+        /* --- STILE FOOTER --- */
+        .site-footer {
+            background-color: var(--darker-bg);
+            border-top: 1px solid var(--border-yellow);
+            padding: 70px 8% 30px 8%;
+            color: var(--text-gray);
+            font-family: 'Inter', sans-serif;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.8fr 1fr 1fr 2fr;
+            gap: 40px;
+            align-items: start;
+            margin-bottom: 50px;
+        }
+
+        .footer-brand-col .footer-logo {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 900;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .footer-brand-col .footer-logo span {
+            color: var(--primary-yellow);
+            font-size: 0.7rem;
+            letter-spacing: 2px;
+            display: block;
+        }
+
+        .footer-brand-col p {
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: var(--text-gray);
+            margin-bottom: 25px;
+            max-width: 320px;
+        }
+
+        .footer-social-icons {
+            display: flex;
+            gap: 12px;
+        }
+
+        .footer-social-icon {
+            width: 38px;
+            height: 38px;
+            background: #111;
+            border: 1px solid #222;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-light);
+            text-decoration: none;
+            transition: 0.3s;
+            font-size: 0.9rem;
+        }
+
+        .footer-social-icon:hover {
+            background: var(--primary-yellow);
+            color: var(--darker-bg);
+            border-color: var(--primary-yellow);
+        }
+
+        .footer-col h4 {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 800;
+            color: #fff;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            margin-bottom: 20px;
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-links li a {
+            text-decoration: none;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .footer-links li a:hover {
+            color: var(--primary-yellow);
+            padding-left: 4px;
+        }
+
+        .footer-follow-col p {
+            font-size: 0.9rem;
+            line-height: 1.5;
+            color: var(--text-gray);
+            margin-bottom: 20px;
+        }
+
+        .footer-social-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .footer-social-btn {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: #111;
+            border: 1px solid #222;
+            padding: 12px 20px;
+            border-radius: 30px;
+            color: #fff;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: 0.3s;
+        }
+
+        .footer-social-btn i {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            transition: 0.3s;
+        }
+
+        .footer-social-btn:hover {
+            border-color: var(--primary-yellow);
+            background: rgba(255, 223, 0, 0.04);
+            color: var(--primary-yellow);
+        }
+
+        .footer-social-btn:hover i {
+            color: var(--primary-yellow);
+        }
+
+        .footer-bottom-bar {
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 25px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.82rem;
+            color: var(--text-gray);
+        }
+
+        .footer-bottom-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .footer-bottom-links a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: 0.2s;
+        }
+
+        .footer-bottom-links a:hover {
+            color: #fff;
+        }
+
+        .made-in-italy {
+            color: var(--primary-yellow);
+            font-weight: 600;
+        }
+
+        @media (max-width: 1100px) {
+            .side-banner-img { display: none; }
+            .footer-grid { grid-template-columns: 1fr 1fr; gap: 30px; }
+        }
+        @media (max-width: 900px) { 
+            .story-grid { grid-template-columns: 1fr; gap: 40px; } 
+            .tournaments-header-flex { flex-direction: column; align-items: flex-start; gap: 20px; }
+            .footer-grid { grid-template-columns: 1fr; gap: 40px; }
+            .footer-bottom-bar { flex-direction: column; gap: 15px; text-align: center; }
+            .tweak-board-wrapper { flex-direction: column; text-align: center; gap: 25px; padding: 30px 20px; }
+            .tweak-left-content { max-width: 100%; align-items: center; text-align: center; }
+        }
+        @media (max-width: 1024px) { nav { display: none; } }
+    </style>
+</head>
+<body>
+
+    <header id="top">
+        <div class="logo-text"><h1>ZERION</h1><span>Esports</span></div>
+        <nav>
+            <ul>
+                <li><a href="#home" class="nav-link active">HOME</a></li>
+                <li><a href="#roster" class="nav-link">ROSTER</a></li>
+                <li><a href="#tweak" class="nav-link">TWEAK</a></li>
+                <li><a href="#story" class="nav-link">STORY</a></li>
+                <li><a href="#news" class="nav-link">NEWS</a></li>
+                <li><a href="#tournaments" class="nav-link">TOURNAMENTS</a></li>
+            </ul>
+        </nav>
+        <a href="https://discord.gg/kQMYsupHha" target="_blank" class="shop-btn"><svg width="20" height="20" viewBox="0 0 127.14 96.36" fill="currentColor" style="display:inline-block; vertical-align:middle; margin-right:8px;"><path d="M107.7,8.07A105.15,105.15,0,0,0,81.47,0a72.06,72.06,0,0,0-3.36,6.83A97.68,97.68,0,0,0,49,6.83,72.37,72.37,0,0,0,45.64,0,105.89,105.89,0,0,0,19.39,8.09C2.79,32.65-1.71,56.6.54,80.21h0A105.73,105.73,0,0,0,32.71,96.36,77.7,77.7,0,0,0,39.6,85.25a68.42,68.42,0,0,1-10.85-5.18c.91-.66,1.8-1.34,2.66-2a75.57,75.57,0,0,0,64.32,0c.87.71,1.76,1.39,2.68,2a68.68,68.68,0,0,1-10.87,5.19,77,77,0,0,0,6.89,11.1,105.25,105.25,0,0,0,32.19-16.15c2.63-27.29-4.53-51.2-19.45-72.15ZM42.45,65.69C36.18,65.69,31,60,31,53s5.18-12.72,11.45-12.72S53.9,46,53.88,53,48.71,65.69,42.45,65.69Zm42.24,0C78.41,65.69,73.25,60,73.25,53s5.18-12.72,11.45-12.72S96.15,46,96.13,53,91,65.69,84.69,65.69Z"/></svg>JOIN DISCORD</a>
+    </header>
+
+    <section id="home" class="hero">
+        <video autoplay muted loop playsinline class="video-background">
+            <source src="sfondo.mp4" type="video/mp4">
+        </video>
+        <div class="video-overlay"></div>
+        <audio id="bgAudio" autoplay loop><source src="music.mp3" type="audio/mp3"></audio>
+        <div class="hero-content">
+            <h1 class="hero-title">ZERION</h1>
+            <div class="hero-subtitle-line">ESPORTS TEAM ESTABLISHED 2026 /</div>
+        </div>
+    </section>
+
+    <div class="banner">
+        <span><i class="fa-solid fa-bolt"></i> ESPORTS TEAM SINCE 2026</span>
+        <span><i class="fa-solid fa-star"></i> ITALIAN PRO PLAYERS</span>
+        <span><i class="fa-solid fa-bolt"></i> ESPORTS TEAM SINCE 2026</span>
+        <span><i class="fa-solid fa-star"></i> ITALIAN PRO PLAYERS</span>
+    </div>
+
+    <section class="machine-section">
+        <div class="machine-tag"><i class="fa-solid fa-circle"></i> OUR TEAM</div>
+        <h2 class="machine-title">Not just a team.<br><span>A complete machine.</span></h2>
+        <p class="machine-desc">Six departments working together to turn raw talent into stage results.</p>
+        
+        <div class="machine-grid">
+            <div class="machine-card">
+                <div class="machine-icon"><i class="fa-solid fa-crosshairs"></i></div>
+                <h3>Performance Lab</h3>
+                <p>Weekly VOD analysis, in-game routine, and customized training setups for every player.</p>
+            </div>
+            <div class="machine-card">
+                <div class="machine-icon"><i class="fa-solid fa-brain"></i></div>
+                <h3>Mental Coaching</h3>
+                <p>Dedicated private coaches: game management, endgame focus, burnout prevention + training services.</p>
+            </div>
+            <div class="machine-card">
+                <div class="machine-icon"><i class="fa-solid fa-globe"></i></div>
+                <h3>Community First</h3>
+                <p>Discord community with active members, monthly open tournaments, and direct support from pros.</p>
+            </div>
+            <div class="machine-card">
+                <div class="machine-icon"><i class="fa-solid fa-handshake"></i></div>
+                <h3>Partnership</h3>
+                <p>Tailored partnerships, from in-stream product placement to major tournament sponsorships.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="roster" class="roster-container">
+        <h2 class="section-main-title">Our Roster</h2>
+        
+        <h2 class="category-title">OWNER</h2>
+        <div class="grid">
+            <div class="player-card">
+                <img src="47.png" class="player-img" alt="47wwesh">
+                <div class="player-name">47wwesh <span class="fi fi-ch flag"></span></div>
+                <div class="player-role">Owner</div>
+            </div>
+            <div class="player-card">
+                <img src="squarciare.png" class="player-img" alt="Squarciare">
+                <div class="player-name">Squarciare <span class="fi fi-it flag"></span></div>
+                <div class="player-role">Owner</div>
+            </div>
+        </div>
+
+        <h2 class="category-title">PRO</h2>
+        <div class="grid">
+            <div class="player-card">
+                <img src="oxcrm.png" class="player-img" alt="ocxrmm">
+                <div class="player-name">ocxrmm <span class="fi fi-it flag"></span></div>
+                <div class="player-role">Pro</div>
+            </div>
+            <div class="player-card">
+                <img src="mady.png" class="player-img" alt="madyxfnbr">
+                <div class="player-name">madyxfnbr <span class="fi fi-it flag"></span></div>
+                <div class="player-role">Pro</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- SEZIONE TWEAK CON SCRITTE A DESTRA E A SINISTRA -->
+    <section id="tweak" class="tweak-section">
+        <div class="tweak-board-wrapper">
+            <img src="tweak.png" alt="Tweak Background" class="tweak-png">
+            
+            <!-- Scritte a Sinistra -->
+            <div class="tweak-left-content">
+                <div class="machine-tag" style="margin-bottom: 0;"><i class="fa-solid fa-circle"></i> OPTIMIZATION</div>
+                <h3>Prenota <span>Tweak</span></h3>
+                <p>Migliora le prestazioni del tuo PC, riduci al minimo l'input lag e sblocca il massimo degli FPS.</p>
+            </div>
+
+            <!-- Pulsante a Destra -->
+            <div class="tweak-right-content">
+                <button class="tweak-open-btn" onclick="apriModalTweak()">PRENOTA ORA</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- MODALE / FINESTRA IN SOVRAIMPRESSIONE PER LA PRENOTAZIONE -->
+    <div class="modal-overlay" id="modalPrenotazione">
+        <div class="modal-box">
+            <button class="modal-close-btn" onclick="chiudiModalTweak()"><i class="fa-solid fa-xmark"></i></button>
+            <h2>Prenota <span>Tweak</span></h2>
+            
+            <form id="bookingForm">
+                <div class="form-group">
+                    <label for="discordId"><i class="fa-brands fa-discord"></i> ID Discord / Tag</label>
+                    <input type="text" id="discordId" placeholder="Es. tuonome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="service"><i class="fa-solid fa-sliders"></i> Seleziona Servizio</label>
+                    <select id="service" required>
+                        <option value="FULL TWEAK | €13">FULL TWEAK | €13</option>
+                        <option value="Windows license | €15">Windows license | €15</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="appointmentDate"><i class="fa-solid fa-calendar-days"></i> Data e Ora</label>
+                    <input type="datetime-local" id="appointmentDate" required>
+                </div>
+
+                <button type="submit" class="modal-submit-btn">Conferma Prenotazione</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- TIMELINE VERTICALE "OUR STORY" -->
+    <section id="story" class="story-section">
+        <div class="story-container">
+            <div class="story-header" style="text-align: left; margin-bottom: 40px;">
+                <div class="machine-tag"><i class="fa-solid fa-circle"></i> FROM 2026</div>
+                <h2 class="section-main-title" style="margin-bottom: 0;">Our Story</h2>
+            </div>
+            <div class="story-grid">
+                <div class="story-text">
+                    <p>Zerion was founded in 2026 by two guys; initially, they started it just for fun, but then built a serious vision and an obsession with proving that anyone can become something.</p>
+                    <p style="margin-top: 20px;">No sponsors, no infrastructure: just a desire to "grow" and the conviction that talent alone isn't enough without a method. Everything else grew from there—the Academy, the Performance Lab, the mental performance unit—all designed to take that very talent all the way to the stage.</p>
+                    <p style="margin-top: 20px;">Today, we are a full-fledged organization, but our goal remains the same: to grow and make a name for ourselves, by seeking out dedicated players and unique talent.</p>
+                </div>
+                
+                <div class="timeline-wrapper">
+                    <div class="timeline-item">
+                        <div class="timeline-icon-box"><i class="fa-solid fa-graduation-cap"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2026</div>
+                            <h4>Start</h4>
+                            <p>2 guys with a project</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon-box"><i class="fa-solid fa-shield-halved"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2026</div>
+                            <h4>Organization</h4>
+                            <p>We Organize Everything Much Better.</p>
+                        </div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-icon-box"><i class="fa-solid fa-trophy"></i></div>
+                        <div class="timeline-content">
+                            <div class="timeline-year">2027</div>
+                            <h4>The Dream</h4>
+                            <p>Grow and Find a Main Player.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SEZIONE NEWS -->
+    <section id="news" class="news-section">
+        <div class="news-layout-wrapper">
+            <img src="sinistra.png" alt="News Side Left" class="side-banner-img">
+            <div class="news-main-content">
+                <div class="machine-tag"><i class="fa-solid fa-circle"></i> NEWSROOM</div>
+                <h2 class="section-main-title" style="margin-bottom: 5px;">Latest from Headquarters</h2>
+                <p class="machine-desc" style="margin: 0 auto; text-align: center;">All official updates, milestones, and team news.</p>
+
+                <div class="news-grid">
+                    <div class="news-card">
+                        <div class="news-card-header">
+                            <span class="news-badge">Roster</span>
+                            <span class="news-date">Jul 15, 2026</span>
+                        </div>
+                        <h3>Zerion conquers the European podium</h3>
+                        <p>Our team demonstrates incredible growth in the latest official qualifiers.</p>
+                    </div>
+
+                    <div class="news-card">
+                        <div class="news-card-header">
+                            <span class="news-badge">Brand</span>
+                            <span class="news-date">Jul 08, 2026</span>
+                        </div>
+                        <h3>New official 2026 kit</h3>
+                        <p>Recycled technical fabric, neon yellow details, and texture inspired by our logo.</p>
+                    </div>
+
+                    <div class="news-card">
+                        <div class="news-card-header">
+                            <span class="news-badge">Partnership</span>
+                            <span class="news-date">Jun 27, 2026</span>
+                        </div>
+                        <h3>Renewals and new collaborations</h3>
+                        <p>Expanding our coaching and support structure for the upcoming season.</p>
+                    </div>
+                </div>
+            </div>
+            <img src="destra.png" alt="News Side Right" class="side-banner-img">
+        </div>
+    </section>
+
+    <!-- SEZIONE TORNEI -->
+    <section id="tournaments" class="tournaments-section">
+        <div class="tournaments-header-flex">
+            <div>
+                <div class="machine-tag"><i class="fa-solid fa-circle"></i> SCHEDULE (EU)</div>
+                <h2 class="section-main-title" style="margin-bottom: 5px;">Next Month Tournaments</h2>
+                <p class="machine-desc" style="margin: 0; text-align: left;">Official competitive schedule for the upcoming weeks.</p>
+            </div>
+            <div class="tournaments-nav-arrows">
+                <button class="t-arrow-btn" id="scrollLeft"><i class="fa-solid fa-chevron-left"></i></button>
+                <button class="t-arrow-btn" id="scrollRight"><i class="fa-solid fa-chevron-right"></i></button>
+            </div>
+        </div>
+
+        <div class="tournaments-carousel-container">
+            <div class="tournaments-grid" id="tournamentsGrid">
+                
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 01</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Ranked Cup - Solos</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 01/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 18:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Solos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 02</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Zero Build Daily Cash</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 02/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 19:00 - 22:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Duos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 03</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Hype Cup Session 1</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 03/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 17:00 - 20:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Trios</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 05</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Console Cash Cup</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 05/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 18:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Duos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 06</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>FNCS Warmup Cup</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 06/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 15:00 - 19:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Trios</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 08</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Victory Cash Cup</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 08/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 19:00 - 22:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Solos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 09</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Mobile & Controller Cup</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 09/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 18:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Solos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 10</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Duos Cash Cup Prelims</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 10/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 18:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Duos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 12</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>FNCS Major - Weekly 1</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 12/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 19:00 - 22:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Trios</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 13</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>FNCS Major - Weekly 1 (Day 2)</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 13/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 19:00 - 22:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Trios</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 15</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Duos Cash Cup</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 15/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 18:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Duos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 16</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Zero Build Cash Cup</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 16/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 19:00 - 22:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Duos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 17</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Solo Victory Cash Cup</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 17/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 18:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Solos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 19</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>FNCS Major - Weekly 2</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 19/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 19:00 - 22:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Trios</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 20</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>FNCS Major - Weekly 2 (Day 2)</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 20/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 19:00 - 22:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Trios</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 22</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Console Cash Cup Extra</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 22/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 18:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Duos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 24</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>Ranked Cup - Trios</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 24/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 18:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Trios</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 26</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>FNCS Major - Semi-Finals</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 26/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 17:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Trios</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 27</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>FNCS Major - Grand Finals</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 27/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 17:00 - 22:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Grand Finals</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+                <div class="tournament-card">
+                    <div class="tournament-header-row">
+                        <span class="tournament-badge">Sept 30</span>
+                        <span class="tournament-status">Upcoming</span>
+                    </div>
+                    <h3>End of Month Cash Cup</h3>
+                    <div class="tournament-info">
+                        <div><i class="fa-solid fa-calendar-days"></i> 30/09/2026</div>
+                        <div><i class="fa-solid fa-clock"></i> 18:00 - 21:00 CET</div>
+                        <div><i class="fa-solid fa-users"></i> Format: Solos</div>
+                    </div>
+                    <a href="https://www.fortnite.com/competitive/?lang=it&region=EU" target="_blank" class="tournament-link">Official Rules</a>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="site-footer">
+        <div class="footer-grid">
+            <!-- Colonna 1: Brand e Info -->
+            <div class="footer-brand-col">
+                <div class="footer-logo">
+                    <i class="fa-solid fa-bolt" style="color: var(--primary-yellow);"></i> ZERION <span>ESPORTS</span>
+                </div>
+                <p>Organizzazione esports italiana dedicata a Fortnite. Competiamo, creiamo, cresciamo. Energia in movimento dal 2026.</p>
+                <div class="footer-social-icons">
+                    <a href="https://discord.gg/kQMYsupHha" target="_blank" class="footer-social-icon"><i class="fa-brands fa-discord"></i></a>
+                    <a href="#" target="_blank" class="footer-social-icon"><i class="fa-brands fa-twitch"></i></a>
+                    <a href="#" target="_blank" class="footer-social-icon"><i class="fa-brands fa-youtube"></i></a>
+                    <a href="#" target="_blank" class="footer-social-icon"><i class="fa-brands fa-tiktok"></i></a>
+                    <a href="#" target="_blank" class="footer-social-icon"><i class="fa-brands fa-x-twitter"></i></a>
+                    <a href="#" target="_blank" class="footer-social-icon"><i class="fa-brands fa-instagram"></i></a>
+                </div>
+            </div>
+
+            <!-- Colonna 2: Team -->
+            <div class="footer-col">
+                <h4>Team</h4>
+                <ul class="footer-links">
+                    <li><a href="#roster">Roster</a></li>
+                    <li><a href="#tournaments">Tornei</a></li>
+                    <li><a href="#roster">Creators</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonna 3: Risorse -->
+            <div class="footer-col">
+                <h4>Risorse</h4>
+                <ul class="footer-links">
+                    <li><a href="#news">News</a></li>
+                    <li><a href="#">Partnership</a></li>
+                    <li><a href="#">Press kit</a></li>
+                </ul>
+            </div>
+
+            <!-- Colonna 4: Seguci (Pulsanti Social) -->
+            <div class="footer-follow-col">
+                <h4>Seguici</h4>
+                <p>Risultati, clip e drop esclusivi: siamo ovunque, scegli tu dove.</p>
+                <div class="footer-social-buttons">
+                    <a href="#" target="_blank" class="footer-social-btn">
+                        <i class="fa-brands fa-instagram"></i> Instagram
+                    </a>
+                    <a href="https://discord.gg/kQMYsupHha" target="_blank" class="footer-social-btn">
+                        <i class="fa-brands fa-discord"></i> Discord
+                    </a>
+                    <a href="#" target="_blank" class="footer-social-btn">
+                        <i class="fa-brands fa-x-twitter"></i> Twitter
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Barra inferiore del Copyright -->
+        <div class="footer-bottom-bar">
+            <div class="copyright-text">
+                &copy; 2026 Zerion Esports &bull; Tutti i diritti riservati
+            </div>
+            <div class="footer-bottom-links">
+                <a href="#">Privacy</a>
+                <a href="#">Cookie</a>
+                <a href="#">Termini</a>
+                <span class="made-in-italy">Made in Italy</span>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Widget fluttuanti in basso a destra (Chat + Finestra PopUp + Freccia su) -->
+    <div class="floating-widgets">
+        <!-- Finestra Chat Popup -->
+        <div class="chat-popup" id="chatPopup">
+            <div class="chat-header">
+                <div class="chat-header-info">
+                    <h3>Assistente Zerion</h3>
+                    <span>Risposte rapide · non un operatore reale</span>
+                </div>
+                <button class="chat-close-btn" id="chatCloseBtn"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            
+            <div class="chat-body" id="chatBody">
+                <div class="chat-msg bot">
+                    Ciao! Sono l'assistente Zerion 👋<br>Chiedimi di roster, tornei, tryout o supporto.
+                    <div class="chat-quick-replies">
+                        <button class="quick-reply-btn" data-query="Come entro nel roster?">Come entro nel roster?</button>
+                        <button class="quick-reply-btn" data-query="Community">Community</button>
+                        <button class="quick-reply-btn" data-query="Contatti">Contatti</button>
+                        <button class="quick-reply-btn" data-query="Supporto">Supporto</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="chat-footer">
+                <input type="text" class="chat-input" id="chatInput" placeholder="Scrivi una domanda...">
+                <button class="chat-send-btn" id="chatSendBtn"><i class="fa-solid fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <!-- Pulsante Apri Chat -->
+        <button class="floating-chat" id="floatingChatBtn" title="Apri Assistente"><i class="fa-solid fa-comment-dots"></i></button>
+        
+        <!-- Pulsante Torna su -->
+        <button class="scroll-top-btn" id="scrollTopBtn" title="Back to Top">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <line x1="12" y1="19" x2="12" y2="5"></line>
+                <polyline points="5 12 12 5 19 12"></polyline>
+            </svg>
+        </button>
+    </div>
+
+    <script>
+        const audio = document.getElementById('bgAudio');
+        audio.volume = 0.05; 
+        document.addEventListener('click', () => { if(audio.paused) audio.play(); }, { once: true });
+
+        // --- SCRIPT PER GESTIRE IL MODALE TWEAK ---
+        function apriModalTweak() {
+            document.getElementById('modalPrenotazione').style.display = 'flex';
+        }
+
+        function chiudiModalTweak() {
+            document.getElementById('modalPrenotazione').style.display = 'none';
+        }
+
+        // Chiude il modale cliccando sullo sfondo scuro esterno
+        window.addEventListener('click', (event) => {
+            let modal = document.getElementById('modalPrenotazione');
+            if (event.target === modal) {
+                chiudiModalTweak();
+            }
+        });
+
+        // --- SCRIPT PER EVIDENZIAre IL TASTO ATTIVO DURANTE LO SCROLL ---
+        const sections = document.querySelectorAll('section, div[id="roster"]');
+        const navLinks = document.querySelectorAll('.nav-link');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                if (window.scrollY >= (sectionTop - 150)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        const grid = document.getElementById('tournamentsGrid');
+        const btnLeft = document.getElementById('scrollLeft');
+        const btnRight = document.getElementById('scrollRight');
+
+        btnLeft.addEventListener('click', () => {
+            grid.scrollBy({ left: -340, behavior: 'smooth' });
+        });
+
+        btnRight.addEventListener('click', () => {
+            grid.scrollBy({ left: 340, behavior: 'smooth' });
+        });
+
+        const scrollTopBtn = document.getElementById('scrollTopBtn');
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // --- SCRIPT WEBHOOK PRENOTAZIONE TWEAK ---
+        const WEBHOOK_URL = "https://discord.com/api/webhooks/1543706903677243422/KNyyNgPduejG3z-v5_uC-oKP9NEiK8xMtoVKCz8Z-P8FwA04gLTW4aj_UTlC9XG3jyrX";
+
+        document.getElementById('bookingForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+
+            const discordId = document.getElementById('discordId').value;
+            const service = document.getElementById('service').value;
+            const appointmentDate = document.getElementById('appointmentDate').value;
+            
+            const now = new Date();
+            const bookingMadeAt = now.toLocaleString('it-IT');
+
+            const payload = {
+                content: `📌 **NUOVA PRENOTAZIONE TWEAK**\n` +
+                         `👤 **Utente (Discord ID):** ${discordId}\n` +
+                         `🛠️ **Servizio Scelto:** ${service}\n` +
+                         `📅 **Per quando è prenotato:** ${appointmentDate.replace('T', ' ')}\n` +
+                         `⏰ **Prenotato il:** ${bookingMadeAt}`
+            };
+
+            try {
+                const response = await fetch(WEBHOOK_URL, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify(payload)
+                });
+
+                if (response.ok) {
+                    alert('Prenotazione inviata con successo!');
+                    document.getElementById('bookingForm').reset();
+                    chiudiModalTweak();
+                } else {
+                    alert('Errore durante l\'invio della prenotazione.');
+                }
+            } catch (error) {
+                console.error('Errore:', error);
+                alert('Impossibile connettersi al server Discord (ricorda di testare tramite un server locale come Live Server di VS Code).');
+            }
+        });
+
+        // --- SCRIPT PER LA CHAT INTERATTIVA CON MINI IA ---
+        const chatPopup = document.getElementById('chatPopup');
+        const floatingChatBtn = document.getElementById('floatingChatBtn');
+        const chatCloseBtn = document.getElementById('chatCloseBtn');
+        const chatBody = document.getElementById('chatBody');
+        const chatInput = document.getElementById('chatInput');
+        const chatSendBtn = document.getElementById('chatSendBtn');
+
+        const discordInviteLink = "https://discord.gg/kQMYsupHha";
+
+        floatingChatBtn.addEventListener('click', () => {
+            chatPopup.classList.toggle('active');
+        });
+        chatCloseBtn.addEventListener('click', () => {
+            chatPopup.classList.remove('active');
+        });
+
+        function handleUserMessage(text) {
+            if (!text.trim()) return;
+
+            const userMsg = document.createElement('div');
+            userMsg.className = 'chat-msg user';
+            userMsg.textContent = text;
+            chatBody.appendChild(userMsg);
+            chatInput.value = '';
+            chatBody.scrollTop = chatBody.scrollHeight;
+
+            setTimeout(() => {
+                const botMsg = document.createElement('div');
+                botMsg.className = 'chat-msg bot';
+                
+                const lowerText = text.toLowerCase();
+
+                if (lowerText.includes('squarciare') || lowerText.includes('parlare con') || lowerText.includes('speciale') || lowerText.includes('problema personale') || lowerText.includes('privato')) {
+                    botMsg.innerHTML = `Non posso ora. Entra su Discord per parlare direttamente con lo staff: <a href="${discordInviteLink}" target="_blank">Unisciti a Discord</a>`;
+                } 
+                else if (lowerText.includes('roster') || lowerText.includes('entra') || lowerText.includes('tryout')) {
+                    botMsg.innerHTML = `Per entrare nel roster o nell'Academy di Zerion, unisciti al nostro server Discord ufficiale: <a href="${discordInviteLink}" target="_blank">Entra su Discord</a>`;
+                } 
+                else if (lowerText.includes('community') || lowerText.includes('discord')) {
+                    botMsg.innerHTML = `Puoi unirti alla nostra community cliccando qui: <a href="${discordInviteLink}" target="_blank">Canale Discord</a>`;
+                } 
+                else if (lowerText.includes('contatti') || lowerText.includes('supporto')) {
+                    botMsg.innerHTML = `Per supporto o richieste, vieni a trovarci su Discord: <a href="${discordInviteLink}" target="_blank">Unisciti a Discord</a>`;
+                } 
+                else {
+                    botMsg.innerHTML = `Ho capito! Per informazioni dettagliate su tornei, staff e Academy, unisciti al nostro server Discord: <a href="${discordInviteLink}" target="_blank">Entra su Discord</a>`;
+                }
+
+                chatBody.appendChild(botMsg);
+                chatBody.scrollTop = chatBody.scrollHeight;
+            }, 500);
+        }
+
+        chatSendBtn.addEventListener('click', () => {
+            handleUserMessage(chatInput.value);
+        });
+
+        chatInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                handleUserMessage(chatInput.value);
+            }
+        });
+
+        chatBody.addEventListener('click', (e) => {
+            if (e.target.classList.contains('quick-reply-btn')) {
+                handleUserMessage(e.target.getAttribute('data-query'));
+            }
+        });
+    </script>
+</body>
+</html>
